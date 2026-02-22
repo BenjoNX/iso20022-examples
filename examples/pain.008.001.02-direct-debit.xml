@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SEPA Direct Debit — pain.008.001.02
+  Single collection with CORE scheme
+  
+  This file collects EUR 99.99 from a customer's account
+  based on a signed SEPA mandate.
+  
+  Generate your own: https://iso20022generator.com/en/sdd-xml-generator
+  Validate this file: https://iso20022generator.com/en/validator
+-->
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.008.001.02"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CstmrDrctDbtInitn>
+
+    <!-- ============================================================ -->
+    <!-- GROUP HEADER                                                 -->
+    <!-- ============================================================ -->
+    <GrpHdr>
+      <MsgId>SDD-20260222-001</MsgId>
+      <CreDtTm>2026-02-22T09:00:00</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <CtrlSum>99.99</CtrlSum>
+      <InitgPty>
+        <Nm>Company ABC SAS</Nm>
+      </InitgPty>
+    </GrpHdr>
+
+    <!-- ============================================================ -->
+    <!-- PAYMENT INFORMATION: Creditor (collector) details            -->
+    <!-- ============================================================ -->
+    <PmtInf>
+      <PmtInfId>SDD-PMT-20260222-001</PmtInfId>
+
+      <!-- Payment method: DD = Direct Debit -->
+      <PmtMtd>DD</PmtMtd>
+      <NbOfTxs>1</NbOfTxs>
+      <CtrlSum>99.99</CtrlSum>
+
+      <PmtTpInf>
+        <SvcLvl><Cd>SEPA</Cd></SvcLvl>
+        <!-- Local instrument: CORE (consumer) or B2B (business) -->
+        <LclInstrm><Cd>CORE</Cd></LclInstrm>
+        <!-- Sequence type: FRST (first), RCUR (recurring), OOFF (one-off), FNAL (final) -->
+        <SeqTp>OOFF</SeqTp>
+      </PmtTpInf>
+
+      <!-- Requested collection date -->
+      <!-- Must be at least 5 business days ahead for FRST, 2 for RCUR -->
+      <ReqdColltnDt>2026-03-15</ReqdColltnDt>
+
+      <!-- Creditor: the company collecting the payment -->
+      <Cdtr>
+        <Nm>Company ABC SAS</Nm>
+      </Cdtr>
+
+      <CdtrAcct>
+        <Id><IBAN>FR7630006000011234567890189</IBAN></Id>
+      </CdtrAcct>
+
+      <CdtrAgt>
+        <FinInstnId><BIC>AGRIFRPPXXX</BIC></FinInstnId>
+      </CdtrAgt>
+
+      <!-- ========================================================== -->
+      <!-- CREDITOR SCHEME IDENTIFICATION (ICS)                       -->
+      <!-- Unique identifier assigned by the central bank to the      -->
+      <!-- creditor. Required for all SEPA Direct Debits.             -->
+      <!-- ========================================================== -->
+      <CdtrSchmeId>
+        <Id>
+          <PrvtId>
+            <Othr>
+              <!-- ICS: Identifiant Creancier SEPA -->
+              <Id>FR72ZZZ123456</Id>
+              <SchmeNm><Prtry>SEPA</Prtry></SchmeNm>
+            </Othr>
+          </PrvtId>
+        </Id>
+      </CdtrSchmeId>
+
+      <!-- ========================================================== -->
+      <!-- DIRECT DEBIT TRANSACTION: Debtor (customer) details        -->
+      <!-- ========================================================== -->
+      <DrctDbtTxInf>
+        <PmtId>
+          <EndToEndId>SUB-2026-M03-CUST001</EndToEndId>
+        </PmtId>
+
+        <InstdAmt Ccy="EUR">99.99</InstdAmt>
+
+        <!-- Mandate information (required) -->
+        <DrctDbtTx>
+          <MndtRltdInf>
+            <!-- Unique mandate reference signed by the debtor -->
+            <MndtId>MANDATE-2025-CUST001</MndtId>
+            <!-- Date the mandate was signed -->
+            <DtOfSgntr>2025-01-15</DtOfSgntr>
+          </MndtRltdInf>
+        </DrctDbtTx>
+
+        <!-- Debtor's bank -->
+        <DbtrAgt>
+          <FinInstnId><BIC>BNPAFRPPXXX</BIC></FinInstnId>
+        </DbtrAgt>
+
+        <!-- Debtor: the customer being charged -->
+        <Dbtr>
+          <Nm>Customer Jean Dupont</Nm>
+        </Dbtr>
+
+        <DbtrAcct>
+          <Id><IBAN>FR7630004000031234567890143</IBAN></Id>
+        </DbtrAcct>
+
+        <RmtInf>
+          <Ustrd>Monthly subscription - March 2026</Ustrd>
+        </RmtInf>
+      </DrctDbtTxInf>
+    </PmtInf>
+
+  </CstmrDrctDbtInitn>
+</Document>

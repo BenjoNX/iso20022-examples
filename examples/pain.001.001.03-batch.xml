@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SEPA Credit Transfer BATCH — pain.001.001.03
+  3 payments in a single file
+  
+  Total: EUR 3,750.50 (1500.00 + 750.50 + 1500.00)
+  
+  Generate your own: https://iso20022generator.com/en/pain-001-generator
+  Validate this file: https://iso20022generator.com/en/validator
+-->
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CstmrCdtTrfInitn>
+    <GrpHdr>
+      <MsgId>BATCH-20260222-001</MsgId>
+      <CreDtTm>2026-02-22T14:00:00</CreDtTm>
+      <NbOfTxs>3</NbOfTxs>
+      <CtrlSum>3750.50</CtrlSum>
+      <InitgPty>
+        <Nm>Company ABC SAS</Nm>
+      </InitgPty>
+    </GrpHdr>
+
+    <PmtInf>
+      <PmtInfId>BATCH-PMT-001</PmtInfId>
+      <PmtMtd>TRF</PmtMtd>
+      <NbOfTxs>3</NbOfTxs>
+      <CtrlSum>3750.50</CtrlSum>
+      <PmtTpInf>
+        <SvcLvl><Cd>SEPA</Cd></SvcLvl>
+      </PmtTpInf>
+      <ReqdExctnDt>2026-03-01</ReqdExctnDt>
+      <Dbtr><Nm>Company ABC SAS</Nm></Dbtr>
+      <DbtrAcct><Id><IBAN>FR7630006000011234567890189</IBAN></Id></DbtrAcct>
+      <DbtrAgt><FinInstnId><BIC>AGRIFRPPXXX</BIC></FinInstnId></DbtrAgt>
+
+      <!-- Transaction 1: Supplier in Germany -->
+      <CdtTrfTxInf>
+        <PmtId><EndToEndId>INV-2026-0042</EndToEndId></PmtId>
+        <Amt><InstdAmt Ccy="EUR">1500.00</InstdAmt></Amt>
+        <CdtrAgt><FinInstnId><BIC>COBADEFFXXX</BIC></FinInstnId></CdtrAgt>
+        <Cdtr><Nm>Supplier GmbH</Nm></Cdtr>
+        <CdtrAcct><Id><IBAN>DE89370400440532013000</IBAN></Id></CdtrAcct>
+        <RmtInf><Ustrd>Invoice 2026-0042</Ustrd></RmtInf>
+      </CdtTrfTxInf>
+
+      <!-- Transaction 2: Freelancer in Netherlands -->
+      <CdtTrfTxInf>
+        <PmtId><EndToEndId>INV-2026-0043</EndToEndId></PmtId>
+        <Amt><InstdAmt Ccy="EUR">750.50</InstdAmt></Amt>
+        <CdtrAgt><FinInstnId><BIC>ABNANL2AXXX</BIC></FinInstnId></CdtrAgt>
+        <Cdtr><Nm>Jan de Vries</Nm></Cdtr>
+        <CdtrAcct><Id><IBAN>NL91ABNA0417164300</IBAN></Id></CdtrAcct>
+        <RmtInf><Ustrd>Consulting February 2026</Ustrd></RmtInf>
+      </CdtTrfTxInf>
+
+      <!-- Transaction 3: Partner in Spain -->
+      <CdtTrfTxInf>
+        <PmtId><EndToEndId>INV-2026-0044</EndToEndId></PmtId>
+        <Amt><InstdAmt Ccy="EUR">1500.00</InstdAmt></Amt>
+        <CdtrAgt><FinInstnId><BIC>CABORABBXXX</BIC></FinInstnId></CdtrAgt>
+        <Cdtr><Nm>Socio Iberico SL</Nm></Cdtr>
+        <CdtrAcct><Id><IBAN>ES9121000418450200051332</IBAN></Id></CdtrAcct>
+        <RmtInf><Ustrd>Partnership Q1 2026</Ustrd></RmtInf>
+      </CdtTrfTxInf>
+    </PmtInf>
+
+  </CstmrCdtTrfInitn>
+</Document>

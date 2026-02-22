@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SEPA Credit Transfer — pain.001.001.03
+  Single payment example
+  
+  This file initiates a EUR 1,500.00 wire transfer from
+  Company ABC (FR) to Supplier GmbH (DE).
+  
+  Generate your own: https://iso20022generator.com/en/pain-001-generator
+  Validate this file: https://iso20022generator.com/en/validator
+-->
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CstmrCdtTrfInitn>
+
+    <!-- ============================================================ -->
+    <!-- GROUP HEADER: Message-level metadata                         -->
+    <!-- One per file. Contains message ID, creation date, and        -->
+    <!-- number of transactions.                                      -->
+    <!-- ============================================================ -->
+    <GrpHdr>
+      <!-- Unique message identifier (max 35 chars, ASCII only) -->
+      <MsgId>MSG-20260222-001</MsgId>
+
+      <!-- Creation date/time in ISO 8601 format -->
+      <CreDtTm>2026-02-22T10:30:00</CreDtTm>
+
+      <!-- Total number of individual transactions in the file -->
+      <NbOfTxs>1</NbOfTxs>
+
+      <!-- Sum of all transaction amounts (must match) -->
+      <CtrlSum>1500.00</CtrlSum>
+
+      <!-- Initiating party: the company sending the file to the bank -->
+      <InitgPty>
+        <Nm>Company ABC SAS</Nm>
+      </InitgPty>
+    </GrpHdr>
+
+    <!-- ============================================================ -->
+    <!-- PAYMENT INFORMATION: Debtor (sender) details                 -->
+    <!-- One or more per file. Groups transactions by debtor account. -->
+    <!-- ============================================================ -->
+    <PmtInf>
+      <!-- Payment information identifier -->
+      <PmtInfId>PMT-20260222-001</PmtInfId>
+
+      <!-- Payment method: TRF = Credit Transfer -->
+      <PmtMtd>TRF</PmtMtd>
+
+      <!-- Number of transactions in this payment block -->
+      <NbOfTxs>1</NbOfTxs>
+
+      <!-- Control sum for this payment block -->
+      <CtrlSum>1500.00</CtrlSum>
+
+      <!-- Payment type information -->
+      <PmtTpInf>
+        <SvcLvl>
+          <!-- SEPA = Single Euro Payments Area -->
+          <Cd>SEPA</Cd>
+        </SvcLvl>
+      </PmtTpInf>
+
+      <!-- Requested execution date (YYYY-MM-DD) -->
+      <!-- The bank will process the payment on this date -->
+      <ReqdExctnDt>2026-03-01</ReqdExctnDt>
+
+      <!-- Debtor: the company making the payment -->
+      <Dbtr>
+        <Nm>Company ABC SAS</Nm>
+      </Dbtr>
+
+      <!-- Debtor's bank account (IBAN format) -->
+      <DbtrAcct>
+        <Id>
+          <IBAN>FR7630006000011234567890189</IBAN>
+        </Id>
+      </DbtrAcct>
+
+      <!-- Debtor's bank (BIC/SWIFT code) -->
+      <DbtrAgt>
+        <FinInstnId>
+          <BIC>AGRIFRPPXXX</BIC>
+        </FinInstnId>
+      </DbtrAgt>
+
+      <!-- ========================================================== -->
+      <!-- CREDIT TRANSFER TRANSACTION: Beneficiary (receiver) details-->
+      <!-- One per payment within this PmtInf block.                  -->
+      <!-- ========================================================== -->
+      <CdtTrfTxInf>
+        <!-- Payment identification -->
+        <PmtId>
+          <!-- End-to-end ID: your internal reference (max 35 chars) -->
+          <!-- Must be unique across all transactions -->
+          <EndToEndId>INV-2026-0042</EndToEndId>
+        </PmtId>
+
+        <!-- Amount and currency -->
+        <Amt>
+          <!-- Instructed amount in EUR (2 decimal places required) -->
+          <InstdAmt Ccy="EUR">1500.00</InstdAmt>
+        </Amt>
+
+        <!-- Creditor's bank (optional but recommended) -->
+        <CdtrAgt>
+          <FinInstnId>
+            <BIC>COBADEFFXXX</BIC>
+          </FinInstnId>
+        </CdtrAgt>
+
+        <!-- Creditor: the beneficiary receiving the payment -->
+        <Cdtr>
+          <Nm>Supplier GmbH</Nm>
+        </Cdtr>
+
+        <!-- Creditor's bank account -->
+        <CdtrAcct>
+          <Id>
+            <IBAN>DE89370400440532013000</IBAN>
+          </Id>
+        </CdtrAcct>
+
+        <!-- Remittance information: payment reference/description -->
+        <RmtInf>
+          <!-- Unstructured: free text (max 140 chars) -->
+          <Ustrd>Invoice 2026-0042 - February services</Ustrd>
+        </RmtInf>
+      </CdtTrfTxInf>
+    </PmtInf>
+
+  </CstmrCdtTrfInitn>
+</Document>
